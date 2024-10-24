@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Evenement</h1>
+
+    <!-- Updated Table Design -->
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="thead-light">
+            <tr>
+                <th>Nom Event</th>
+                <th>Adresse Event</th>
+                <th>
+                    <a href="{{ path('admin_evenement_index', {'sortField': 'capaciteevent', 'sortOrder': currentSortField == 'capaciteevent' and currentSortOrder == 'asc' ? 'desc' : 'asc'}) }}">
+                        Capacité Event
+                        {% if currentSortField == 'capaciteevent' %}
+                            {% if currentSortOrder == 'asc' %}
+                                <i class="fas fa-arrow-down"></i>
+                            {% else %}
+                                <i class="fas fa-arrow-up"></i>
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="{{ path('admin_evenement_index', {'sortField': 'nbrticketdispo', 'sortOrder': currentSortField == 'nbrticketdispo' and currentSortOrder == 'asc' ? 'desc' : 'asc'}) }}">
+                        Nombre de Tickets Disponibles
+                        {% if currentSortField == 'nbrticketdispo' %}
+                            {% if currentSortOrder == 'asc' %}
+                                <i class="fas fa-arrow-down"></i>
+                            {% else %}
+                                <i class="fas fa-arrow-up"></i>
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="{{ path('admin_evenement_index', {'sortField': 'prixentre', 'sortOrder': currentSortField == 'prixentre' and currentSortOrder == 'asc' ? 'desc' : 'asc'}) }}">
+                        Prix Entrée
+                        {% if currentSortField == 'prixentre' %}
+                            {% if currentSortOrder == 'asc' %}
+                                <i class="fas fa-arrow-down"></i>
+                            {% else %}
+                                <i class="fas fa-arrow-up"></i>
+                            {% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>Date Début Event</th>
+                <th>Date Fin Event</th>
+                <th>Description Event</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td class="text-dark">{{ evenement.nomevent }}</td>
+                <td class="text-dark">{{ evenement.adresseevent }}</td>
+                <td class="text-dark">{{ evenement.capaciteevent }}</td>
+                <td class="text-dark">{{ evenement.nbrticketdispo }}</td>
+                <td class="text-dark">{{ evenement.prixentre }} DT</td>
+                <td class="text-dark">{{ evenement.datedebutevent|date('Y-m-d') }}</td>
+                <td class="text-dark">{{ evenement.datefinevent|date('Y-m-d') }}</td>
+                <td class="text-dark">{{ evenement.descriptionevent }}</td>
+                <td>
+                    <img width="100" height="100" src="{{ asset('uploads/' ~ evenement.image) }}" alt="{{ evenement.nomevent }} Image"/>
+                </td>
+                <td>
+                    <a href="{{ path('admin_evenement_show', {'idevent': evenement.idevent}) }}" class="btn btn-outline-primary btn-sm">Show</a>
+                    <a href="{{ path('admin_evenement_edit', {'idevent': evenement.idevent}) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10" class="text-center">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <a href="{{ path('admin_evenement_new') }}" class="btn btn-primary">Create New Event</a>
+    </div>
+
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'basepage2.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+    
+        <div class="section-header">
+          <h2>My Tickets</h2>
+          <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
+        </div>
+
+        <div class="row">
+        {% for ticket in tickets %}
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100" style="margin: 20px 0;">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">{{ ticket.nomclient }}</h5>
+                <h6 class="card-price text-center">{{ ticket.prixticket }} TND</h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Nom Evenement: {{ ticket.nomevent }}</li>
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Nb. Tickets: {{ ticket.nbrTicket }}</li>
+                </ul>
+                <hr>
+                <div class="text-center">
+        
+                    <a style="margin: 0 20px 0 50px;" href="{{ path('app_ticket_show', {'idticket': ticket.idticket}) }}">show</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+{% endblock %}

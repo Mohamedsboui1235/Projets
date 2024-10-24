@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mb-4">Ticket Index</h1>
+
+    <!-- Card for total tickets sold -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card border-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tickets Sold</h5>
+                    <p class="card-text display-4 text-primary">{{ totalNbrTickets }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for total earnings -->
+        <div class="col-md-6">
+            <div class="card border-secondary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Earnings</h5>
+                    <p class="card-text display-4 text-secondary">{{ totalEarnings }} DT</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Updated Table Design with Darker Text -->
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="thead-light">
+            <tr>
+                <th>Nom Client</th>
+                <th>Prix Ticket</th>
+                <th>Nom Event</th>
+                <th>Nbr Ticket</th>
+                <th>Événement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td class="text-dark">{{ ticket.nomclient }}</td>
+                <td class="text-dark">{{ ticket.prixticket }}</td>
+                <td class="text-dark">{{ ticket.nomevent }}</td>
+                <td class="text-dark">{{ ticket.nbrTicket }}</td>
+                <td class="text-dark">{{ ticket.event }}</td>
+                <td>
+                    <a href="{{ path('admin_ticket_show', {'idticket': ticket.idticket}) }}" class="btn btn-outline-primary btn-sm">Show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'basepage2.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <h1>Evenement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nomevent</th>
+                <td>{{ evenement.nomevent }}</td>
+            </tr>
+            <tr>
+                <th>Adresseevent</th>
+                <td>{{ evenement.adresseevent }}</td>
+            </tr>
+            <tr>
+                <th>Capaciteevent</th>
+                <td>{{ evenement.capaciteevent }}</td>
+            </tr>
+            <tr>
+                <th>Nbrticketdispo</th>
+                <td>{{ evenement.nbrticketdispo }}</td>
+            </tr>
+            <tr>
+                <th>Datedebutevent</th>
+                <td>{{ evenement.datedebutevent }}</td>
+            </tr>
+            <tr>
+                <th>Datefinevent</th>
+                <td>{{ evenement.datefinevent }}</td>
+            </tr>
+            <tr>
+                <th>Descriptionevent</th>
+                <td>{{ evenement.descriptionevent }}</td>
+            </tr>
+            <tr>
+                <th>Prixentre</th>
+                <td>{{ evenement.prixentre }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ evenement.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_evenement_index') }}">back to event tickets</a>
+{% endblock %}

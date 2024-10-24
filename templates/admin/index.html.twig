@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Event Ticket Overview</h1>
+    <canvas id="eventBarChart"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('eventBarChart').getContext('2d');
+        const eventBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ dates|raw }},
+                datasets: [
+                    {
+                        label: 'Available Tickets',
+                        data: {{ availableTickets|raw }},
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Sold Tickets',
+                        data: {{ soldTickets|raw }},
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Event Tickets Overview'
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'basepage.html.twig' %}
+
+{% block title %}Evenement index{% endblock %}
+
+{% block body %}
+    
+
+        <div class="section-header">
+          <h2>Buy Event Tickets</h2>
+          <p>Velit consequatur consequatur inventore iste fugit unde omnis eum aut.</p>
+        </div>
+
+        <div class="row">
+        {% for evenement in evenements %}
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100" style="margin: 20px 0;">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">{{ evenement.nomevent }}</h5>
+                <img style="display: block; margin: 20px auto;" width="200" height="200" src="{{ asset('uploads/' ~ evenement.image) }}" />
+                <h6 class="card-price text-center">{{ evenement.prixentre }} TND</h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Capacité: {{ evenement.capaciteevent }}</li>
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Nb. Tickets Dispo: {{ evenement.nbrticketdispo }}</li>
+                  <li><span class="fa-li"><i class="fa fa-check"></i></span>Date: {{ evenement.datedebutevent }} ---> {{ evenement.datefinevent }}</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fa fa-times"></i></span>Description: {{ evenement.descriptionevent }}</li>
+                </ul>
+                <hr>
+                <div class="text-center">
+                    <a style="margin: 0 20px 0 50px;" href="{{ path('app_ticket_new', {'idevent': evenement.idevent}) }}">buy ticket</a>
+        
+                    <a style="margin: 0 20px 0 50px;" href="{{ path('app_evenement_show', {'idevent': evenement.idevent}) }}">show</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+{% endblock %}
